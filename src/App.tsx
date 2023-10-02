@@ -31,15 +31,15 @@ export default function App() {
         <div id="8" className="square shadow" data-id="square"></div>
         <div id="9" className="square shadow" data-id="square"></div>
 
-        <div className="score shadow" style={{backgroundColor: "var(--turquoise)"}}>
+        <div className="score shadow" style={{ backgroundColor: "var(--turquoise)" }}>
           <p>Player 1</p>
           <span data-id="p1-wins">0 Wins</span>
         </div>
-        <div className="score shadow" style={{backgroundColor: "var(--light-gray)"}}>
+        <div className="score shadow" style={{ backgroundColor: "var(--light-gray)" }}>
           <p>Ties</p>
           <span data-id="ties">0</span>
         </div>
-        <div className="score shadow" style={{backgroundColor: "var(--yellow)"}}>
+        <div className="score shadow" style={{ backgroundColor: "var(--yellow)" }}>
           <p>Player 2</p>
           <span data-id="p2-wins">0 Wins</span>
         </div>
