@@ -201,22 +201,6 @@ button:hover {
   background-color: purple;
 }
 
-/* Footer Style */
-
-footer {
-  color: white;
-  margin-top: 50px;
-}
-
-footer p {
-  margin-top: 10px;
-  text-align: center;
-}
-
-footer a {
-  color: var(--yellow);
-}
-
 .modal {
   display: flex;
   justify-content: center;

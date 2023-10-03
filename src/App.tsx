@@ -1,5 +1,6 @@
-import React from 'react'
-import './App.css'
+import React from "react";
+import Footer from "./components/Footer";
+import "./App.css";
 
 export default function App() {
   return (
@@ -31,35 +32,35 @@ export default function App() {
         <div id="8" className="square shadow" data-id="square"></div>
         <div id="9" className="square shadow" data-id="square"></div>
 
-        <div className="score shadow" style={{ backgroundColor: "var(--turquoise)" }}>
+        <div
+          className="score shadow"
+          style={{ backgroundColor: "var(--turquoise)" }}
+        >
           <p>Player 1</p>
           <span data-id="p1-wins">0 Wins</span>
         </div>
-        <div className="score shadow" style={{ backgroundColor: "var(--light-gray)" }}>
+        <div
+          className="score shadow"
+          style={{ backgroundColor: "var(--light-gray)" }}
+        >
           <p>Ties</p>
           <span data-id="ties">0</span>
         </div>
-        <div className="score shadow" style={{ backgroundColor: "var(--yellow)" }}>
+        <div
+          className="score shadow"
+          style={{ backgroundColor: "var(--yellow)" }}
+        >
           <p>Player 2</p>
           <span data-id="p2-wins">0 Wins</span>
         </div>
       </div>
-    <footer>
-      <p>
-        Project Refactored by
-        <a href="https://www.twitter.com/aliha995">Ali haghayegh</a>
-      </p>
-      <p>
-        and
-        <a href="https://www.github.com/Alihaghayegh">Github Page</a>
-      </p>
-    </footer>
-    <div className="modal hidden" data-id="modal">
-      <div className="modal-contents">
-        <p data-id="modal-text">Player 1 wins!</p>
-        <button data-id="modal-btn">Play again</button>
+      <Footer />
+      <div className="modal hidden" data-id="modal">
+        <div className="modal-contents">
+          <p data-id="modal-text">Player 1 wins!</p>
+          <button data-id="modal-btn">Play again</button>
+        </div>
       </div>
-    </div>
     </>
-  )
+  );
 }
