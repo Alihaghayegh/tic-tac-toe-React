@@ -1,8 +1,11 @@
 import React from "react";
 import Footer from "./components/Footer";
+import Modal from "./components/Modal";
 import "./App.css";
 
 export default function App() {
+  const showModal = false;
+
   return (
     <>
       <div className="grid">
@@ -55,12 +58,8 @@ export default function App() {
         </div>
       </div>
       <Footer />
-      <div className="modal hidden" data-id="modal">
-        <div className="modal-contents">
-          <p data-id="modal-text">Player 1 wins!</p>
-          <button data-id="modal-btn">Play again</button>
-        </div>
-      </div>
+
+      {showModal && <Modal message="Player 1 wins!" />}
     </>
   );
 }
