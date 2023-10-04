@@ -25,15 +25,11 @@ export default function App() {
           </div>
         </div>
 
-        <div id="1" className="square shadow" data-id="square"></div>
-        <div id="2" className="square shadow" data-id="square"></div>
-        <div id="3" className="square shadow" data-id="square"></div>
-        <div id="4" className="square shadow" data-id="square"></div>
-        <div id="5" className="square shadow" data-id="square"></div>
-        <div id="6" className="square shadow" data-id="square"></div>
-        <div id="7" className="square shadow" data-id="square"></div>
-        <div id="8" className="square shadow" data-id="square"></div>
-        <div id="9" className="square shadow" data-id="square"></div>
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((squareId) => {
+          return <div key={squareId} className="square shadow">
+            <i className="fa-solid fa-x turquoise"></i>
+          </div>;
+        })}
 
         <div
           className="score shadow"
