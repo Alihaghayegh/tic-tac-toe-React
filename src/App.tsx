@@ -88,7 +88,6 @@ export default function App() {
   const game = deriveGame(state);
   const stats = deriveStats(state);
 
-  const showModal = false;
 
   return (
     <>
@@ -132,7 +131,7 @@ export default function App() {
       </div>
       <Footer />
 
-      {showModal && <Modal message="Player 1 wins!" />}
+      {game.status.isComplete && <Modal message="Player 1 wins!" />}
     </>
   );
 }
