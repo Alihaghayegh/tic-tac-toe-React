@@ -1,10 +1,18 @@
-import React from "react";
+import { useState } from "react";
 import Footer from "./components/Footer";
 import Modal from "./components/Modal";
-import "./App.css";
 import Menu from "./components/Menu";
+import "./App.css";
 
 export default function App() {
+  const [state, setState] = useState({
+    currentGameMoves: [], // All the Player moves for the active game
+    history: {
+      currentRoundGames: [],
+      allGames: [],
+    },
+  });
+
   const showModal = false;
 
   return (
@@ -18,9 +26,11 @@ export default function App() {
         <Menu onAction={(action) => console.log(action)} />
 
         {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((squareId) => {
-          return <div key={squareId} className="square shadow">
-            <i className="fa-solid fa-x turquoise"></i>
-          </div>;
+          return (
+            <div key={squareId} className="square shadow">
+              <i className="fa-solid fa-x turquoise"></i>
+            </div>
+          );
         })}
 
         <div
