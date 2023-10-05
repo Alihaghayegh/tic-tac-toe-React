@@ -2,7 +2,43 @@ import { useState } from "react";
 import Footer from "./components/Footer";
 import Modal from "./components/Modal";
 import Menu from "./components/Menu";
+import { GameState, Player } from "./types";
 import "./App.css";
+
+const players: Player[] = [
+  {
+    id: 1,
+    name: "Player 1",
+    iconClass: "fa-x",
+    colorClass: "turquoise",
+  },
+  {
+    id: 2,
+    name: "Player 2",
+    iconClass: "fa-o",
+    colorClass: "yellow",
+  },
+];
+
+function deriveGame(state: GameState) {}
+
+function deriveStats(state: GameState) {
+  return {
+    playerWithStats: players.map((player) => {
+      const wins = state.history.currentRoundGames.filter(
+        (game) => game.status.winner?.id === player.id
+      ).length;
+
+      return {
+        ...player,
+        wins,
+      };
+    }),
+    ties: state.history.currentRoundGames.filter(
+      (game) => game.status.winner === null
+    ).length,
+  };
+}
 
 export default function App() {
   const [state, setState] = useState({
@@ -12,6 +48,9 @@ export default function App() {
       allGames: [],
     },
   });
+
+  const game = deriveGame(state);
+  const stats = deriveStats(state);
 
   const showModal = false;
 
@@ -38,21 +77,21 @@ export default function App() {
           style={{ backgroundColor: "var(--turquoise)" }}
         >
           <p>Player 1</p>
-          <span data-id="p1-wins">0 Wins</span>
+          <span data-id="p1-wins">{stats.playerWithStats[0].wins} Wins</span>
         </div>
         <div
           className="score shadow"
           style={{ backgroundColor: "var(--light-gray)" }}
         >
           <p>Ties</p>
-          <span data-id="ties">0</span>
+          <span data-id="ties">{stats.ties}</span>
         </div>
         <div
           className="score shadow"
           style={{ backgroundColor: "var(--yellow)" }}
         >
           <p>Player 2</p>
-          <span data-id="p2-wins">0 Wins</span>
+          <span data-id="p2-wins">{stats.playerWithStats[1].wins} Wins</span>
         </div>
       </div>
       <Footer />
