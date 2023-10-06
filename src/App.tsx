@@ -5,6 +5,7 @@ import Menu from "./components/Menu";
 import { GameState, Player } from "./types";
 import classNames from "classnames";
 import "./App.css";
+import { useLocalStorage } from "./useLocalStorage";
 
 const players: Player[] = [
   {
@@ -78,7 +79,15 @@ function deriveStats(state: GameState) {
 }
 
 export default function App() {
-  const [state, setState] = useState<GameState>({
+  // const [state, setState] = useState<GameState>({
+  //   currentGameMoves: [], // All the Player moves for the active game
+  //   history: {
+  //     currentRoundGames: [],
+  //     allGames: [],
+  //   },
+  // });
+
+  const [state, setState] = useLocalStorage("game-state-key", {
     currentGameMoves: [], // All the Player moves for the active game
     history: {
       currentRoundGames: [],
@@ -128,10 +137,7 @@ export default function App() {
       <div className="grid">
         <div className={classNames("turn", game.currentPlayer.colorClass)}>
           <i
-            className={classNames(
-              "fa-solid",
-              game.currentPlayer.iconClass
-            )}
+            className={classNames("fa-solid", game.currentPlayer.iconClass)}
           ></i>
           <p>{game.currentPlayer.name}, you're up!</p>
         </div>
