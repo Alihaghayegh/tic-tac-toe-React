@@ -3,8 +3,8 @@ import Footer from "./components/Footer";
 import Modal from "./components/Modal";
 import Menu from "./components/Menu";
 import { GameState, Player } from "./types";
-import "./App.css";
 import classNames from "classnames";
+import "./App.css";
 
 const players: Player[] = [
   {
@@ -84,10 +84,21 @@ export default function App() {
       currentRoundGames: [],
       allGames: [],
     },
-  });
+  } as GameState);
 
   const game = deriveGame(state);
   const stats = deriveStats(state);
+
+  function handlePlayerMove(squareId: number, player: Player) {
+    setState((prev) => {
+      const stateClone = structuredClone(prev);
+      stateClone.currentGameMoves.push({
+        squareId,
+        player,
+      });
+      return stateClone;
+    });
+  }
 
   return (
     <>
@@ -105,7 +116,15 @@ export default function App() {
           );
 
           return (
-            <div key={squareId} className="square shadow">
+            <div
+              key={squareId}
+              className="square shadow"
+              onClick={() => {
+                if (existingMove) return;
+
+                handlePlayerMove(squareId, game.currentPlayer);
+              }}
+            >
               {existingMove && (
                 <i
                   className={classNames(
