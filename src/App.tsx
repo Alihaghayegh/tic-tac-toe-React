@@ -126,9 +126,14 @@ export default function App() {
   return (
     <>
       <div className="grid">
-        <div className="turn" data-id="turn">
-          <i className="fa-solid fa-x turquoise"></i>
-          <p className="turquoise">Player 1, you're up!</p>
+        <div className={classNames("turn", game.currentPlayer.colorClass)}>
+          <i
+            className={classNames(
+              "fa-solid",
+              game.currentPlayer.iconClass
+            )}
+          ></i>
+          <p>{game.currentPlayer.name}, you're up!</p>
         </div>
 
         <Menu onAction={(action) => resetGame(action === "new-round")} />
