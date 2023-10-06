@@ -78,13 +78,13 @@ function deriveStats(state: GameState) {
 }
 
 export default function App() {
-  const [state, setState] = useState({
+  const [state, setState] = useState<GameState>({
     currentGameMoves: [], // All the Player moves for the active game
     history: {
       currentRoundGames: [],
       allGames: [],
     },
-  } as GameState);
+  });
 
   const game = deriveGame(state);
   const stats = deriveStats(state);
