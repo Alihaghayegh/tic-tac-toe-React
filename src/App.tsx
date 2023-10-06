@@ -89,6 +89,29 @@ export default function App() {
   const game = deriveGame(state);
   const stats = deriveStats(state);
 
+  function resetGame(isNewRound: boolean) {
+    setState((prev) => {
+      const stateClone = structuredClone(prev);
+      const { status, moves } = game;
+      if (status.isComplete) {
+        stateClone.history.currentRoundGames.push({
+          moves,
+          status,
+        });
+      }
+      stateClone.currentGameMoves = [];
+
+      if (isNewRound) {
+        stateClone.history.allGames.push(
+          ...stateClone.history.currentRoundGames
+        );
+        stateClone.history.currentRoundGames = [];
+      }
+
+      return stateClone;
+    });
+  }
+
   function handlePlayerMove(squareId: number, player: Player) {
     setState((prev) => {
       const stateClone = structuredClone(prev);
@@ -108,7 +131,7 @@ export default function App() {
           <p className="turquoise">Player 1, you're up!</p>
         </div>
 
-        <Menu onAction={(action) => console.log(action)} />
+        <Menu onAction={(action) => resetGame(action === "new-round")} />
 
         {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((squareId) => {
           const existingMove = game.moves.find(
@@ -167,6 +190,7 @@ export default function App() {
           message={
             game.status.winner ? `${game.status.winner.name} wins!` : "Ties!"
           }
+          onClick={() => resetGame(false)}
         />
       )}
     </>
