@@ -4,6 +4,7 @@ import Modal from "./components/Modal";
 import Menu from "./components/Menu";
 import { GameState, Player } from "./types";
 import "./App.css";
+import classNames from "classnames";
 
 const players: Player[] = [
   {
@@ -99,9 +100,21 @@ export default function App() {
         <Menu onAction={(action) => console.log(action)} />
 
         {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((squareId) => {
+          const existingMove = game.moves.find(
+            (move) => move.squareId === squareId
+          );
+
           return (
             <div key={squareId} className="square shadow">
-              <i className="fa-solid fa-x turquoise"></i>
+              {existingMove && (
+                <i
+                  className={classNames(
+                    "fa-solid",
+                    existingMove.player.colorClass,
+                    existingMove.player.iconClass
+                  )}
+                ></i>
+              )}
             </div>
           );
         })}
